@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="RAO Adventure Gear - Never Ending Adventure. Toko resmi perlengkapan pendakian gunung, tektok ultralight, sewa tenda camping per hari & open trip Seven Summits Indonesia." />
+  <title>RAO Adventure Gear - Never Ending Adventure</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- Topographic Contour Lines Background Pattern -->
+  <div class="bg-topo-overlay"></div>
+
+  <!-- Ambient Glowing Mountain Light -->
+  <div class="bg-ambient-blob blob-1"></div>
+  <div class="bg-ambient-blob blob-2"></div>
+  <div class="bg-ambient-blob blob-3"></div>
+
+  <!-- =========================================================================
+       NAVIGATION BAR
+       ========================================================================= -->
+  <header class="navbar">
+    <div class="container">
+      <!-- Custom SVG Logo "RAO Adventure Gear" replicated from banner -->
+      <a href="#beranda" class="brand-logo" aria-label="RAO Adventure Gear Home">
+        <div class="logo-symbol">
+          <svg viewBox="0 0 340 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="height: 44px; width: auto;">
+            <!-- Letter 'R' (Dynamic Sharp Outdoor Stylized) -->
+            <path d="M12 20 C22 18, 48 16, 68 28 C82 37, 80 54, 66 62 C74 68, 86 82, 94 92 H72 L52 66 H36 V92 H14 L24 48 Z M36 34 V52 H54 C64 52, 66 40, 56 35 C48 32, 40 33, 36 34 Z" fill="currentColor" />
+            
+            <!-- Letter 'A' (Mountain Peak Summit Shape) -->
+            <path d="M102 92 L144 18 L186 92 H160 L144 58 L128 92 H102 Z M144 38 L136 52 H152 L144 38 Z" fill="currentColor" />
+            
+            <!-- Letter 'O' (Circular Emblem: Green Field + Red Compass Needle + Mountain & Hiker Silhouette) -->
+            <g transform="translate(198, 12)">
+              <!-- Outer White/Silver Ring -->
+              <circle cx="42" cy="42" r="39" stroke="currentColor" stroke-width="4.5" fill="#059669" />
+              <!-- Mountain Silhouette inside circle -->
+              <path d="M12 68 L36 38 L54 58 L72 68 Z" fill="#047857" />
+              <!-- Compass Red Needle Pointer -->
+              <polygon points="42,42 66,20 48,46" fill="#ef4444" />
+              <!-- Compass White Contrast Needle -->
+              <polygon points="42,42 22,60 38,40" fill="#ffffff" opacity="0.9" />
+              <!-- Hiker with Backpack & Trekking Pole Silhouette -->
+              <g transform="translate(56, 32) scale(0.65)">
+                <circle cx="12" cy="6" r="3.5" fill="#ffffff" />
+                <rect x="2" y="10" width="6" height="12" rx="2" fill="#ffffff" />
+                <path d="M8 10 H14 L12 24 H8 Z" fill="#ffffff" />
+                <path d="M9 24 L6 36 M12 24 L17 35" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+                <line x1="18" y1="12" x2="22" y2="38" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" />
+              </g>
+            </g>
+
+            <!-- Subtitle "Adventure Gear" -->
+            <text x="14" y="112" font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="21" fill="currentColor" letter-spacing="1.5">ADVENTURE GEAR</text>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Navigation Menu -->
+      <nav>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#beranda" class="nav-link active">Beranda</a></li>
+          <li><a href="#puncak" class="nav-link">Puncak & Cuaca</a></li>
+          <li><a href="#produk" class="nav-link">Katalog Gear</a></li>
+          <li><a href="#penyewaan" class="nav-link">Sewa Alat Camp</a></li>
+          <li><a href="#persiapan" class="nav-link">Checklist Pendaki</a></li>
+          <li><a href="#event" class="nav-link">Open Trip & Event</a></li>
+          <li><a href="#kontak" class="nav-link">Kontak Basecamp</a></li>
+        </ul>
+      </nav>
+
+      <!-- Action Buttons (Theme, Cart, Mobile Toggle) -->
+      <div class="nav-actions">
+        <!-- Dark / Light Mode Switcher -->
+        <button class="icon-btn" id="themeToggleBtn" aria-label="Ganti Tema">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+
+        <!-- Cart Trigger Button with Live Badge -->
+        <button class="icon-btn" id="cartTriggerBtn" aria-label="Lihat Keranjang">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button class="icon-btn hamburger-btn" id="hamburgerBtn" aria-label="Buka Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       HERO SECTION (#beranda) - Never Ending Adventure
+       ========================================================================= -->
+  <section class="hero-section" id="beranda">
+    <!-- Animated Floating Mist Layers -->
+    <div class="hero-mist-container">
+      <div class="hero-mist-layer hero-mist-1"></div>
+      <div class="hero-mist-layer hero-mist-2"></div>
+    </div>
+
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content reveal-on-scroll">
+          <div class="hero-badge">
+            <span class="badge-pulse"></span>
+            <span>🏔️ Musim Pendakian 2026 • Gear & Basecamp Ready</span>
+          </div>
+
+          <span class="hero-slogan-lead">Never Ending Adventure</span>
+          
+          <h1 class="hero-title">
+            Taklukkan Setiap Puncak Bersama <span class="highlight">RAO Adventure Gear</span>
+          </h1>
+          
+          <p class="hero-desc">
+            Pusat perlengkapan pendakian gunung profesional, gear *tektok ultralight*, persewaan tenda & alat camping higienis per hari, serta layanan *Open Trip* resmi dengan pemandu berlisensi APGI.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#produk" class="btn btn-primary btn-lg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+              Beli Gear Pendakian
+            </a>
+            <a href="#penyewaan" class="btn btn-secondary btn-lg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2L2 22h20L12 2z"></path><path d="M12 12v10"></path></svg>
+              Sewa Alat Camping
+            </a>
+          </div>
+
+          <!-- Quick Live Stats -->
+          <div class="hero-stats" id="heroStats">
+            <!-- Populated via JavaScript -->
+          </div>
+        </div>
+
+        <!-- Hero Showcase Visual (Rock Climber & Sunset Atmosphere) -->
+        <div class="hero-visual reveal-on-scroll reveal-delay-2">
+          <div class="hero-card-stack">
+            <!-- Floating Badge 1 -->
+            <div class="floating-badge floating-badge-1">
+              <div class="floating-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <div class="floating-text">
+                <div class="title">Rating 4.9 / 5.0</div>
+                <div class="sub">10.500+ Pendaki Puas</div>
+              </div>
+            </div>
+
+            <!-- Main Featured Showcase Card -->
+            <div class="hero-main-card">
+              <div class="hero-image-wrap">
+                <img src="https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=1000&q=80" alt="RAO Climber & Mountain Adventure" />
+                <div class="hero-card-overlay">
+                  <span class="hero-card-tag">Never Ending Adventure</span>
+                  <h3 style="font-size: 1.35rem; font-weight: 800;">Ekspedisi Puncak & Tebing</h3>
+                  <p style="font-size: 0.88rem; color: #cbd5e1;">Peralatan tangguh teruji di medan ekstrem mulai dari jalur tektok hingga summit attack Seven Summits.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Badge 2 -->
+            <div class="floating-badge floating-badge-2">
+              <div class="floating-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <div class="floating-text">
+                <div class="title">Higienis & Anti Bocor</div>
+                <div class="sub">100% QC Tenda & Cuci Laundry</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mountain Silhouette Divider (Hero to Features) -->
+  <div class="mountain-divider">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0 L150,60 L300,20 L480,85 L620,10 L780,75 L950,25 L1100,65 L1200,0 L1200,120 L0,120 Z" fill="var(--bg-primary)" opacity="0.4"></path>
+      <path d="M0,35 L120,80 L280,30 L450,90 L600,25 L750,85 L900,40 L1080,75 L1200,20 L1200,120 L0,120 Z" fill="var(--bg-primary)"></path>
+    </svg>
+  </div>
+
+  <!-- =========================================================================
+       FEATURES / VALUE PROPOSITION SECTION
+       ========================================================================= -->
+  <section class="section">
+    <div class="container">
+      <div class="features-grid">
+        <div class="feature-box reveal-on-scroll reveal-delay-1">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <h3>Standar Ekspedisi</h3>
+          <p>Tenda anti-badai, carrier ergonomis, dan peralatan masak bermutu tinggi yang telah teruji di gunung-gunung tertinggi Indonesia.</p>
+        </div>
+
+        <div class="feature-box reveal-on-scroll reveal-delay-2">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <h3>Ultralight & Tektok Ready</h3>
+          <p>Koleksi gear ringan (carbon pole, vest pack, titanium stove) khusus pendaki cepat yang mendambakan pergerakan efisien.</p>
+        </div>
+
+        <div class="feature-box reveal-on-scroll reveal-delay-3">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h3>Alat Sewa Bersih & Wangi</h3>
+          <p>Tenda dicuci bersih, diuji anti bocor, dan sleeping bag di-laundry setiap selesai disewa. Bebas bau apek dan siap pakai.</p>
+        </div>
+
+        <div class="feature-box reveal-on-scroll reveal-delay-4">
+          <div class="feature-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          </div>
+          <h3>Basecamp 24 Jam</h3>
+          <p>Layanan konsultasi jalur, info kuota simaksi, dan drop/ambil alat sewa fleksibel 24 jam di akhir pekan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mountain Silhouette Divider (Features to Peaks Section) -->
+  <div class="mountain-divider">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+      <path d="M0,0 L200,50 L380,15 L560,65 L720,10 L890,55 L1050,20 L1200,45 L1200,80 L0,80 Z" fill="var(--bg-secondary)"></path>
+    </svg>
+  </div>
+
+  <!-- =========================================================================
+       INFORMASI PUNCAK GUNUNG & ESTIMASI SUHU (#puncak)
+       ========================================================================= -->
+  <section class="section" id="puncak" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <span class="section-tag">Destinasi Puncak Indonesia</span>
+        <h2 class="section-title">Eksplorasi Gunung & <span class="text-gradient">Estimasi Suhu Puncak</span></h2>
+        <p class="section-subtitle">Ketahui ketinggian elevasi (MDPL), suhu udara ekstrem, dan tingkat tantangan jalur sebelum memulai pendakian.</p>
+      </div>
+
+      <!-- Mountain Peaks Grid -->
+      <div class="peaks-grid" id="mountainPeaksGrid">
+        <!-- Populated via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Mountain Silhouette Divider (Peaks to Products) -->
+  <div class="mountain-divider mountain-divider-reverse">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+      <path d="M0,0 L180,45 L350,10 L520,60 L680,15 L860,50 L1020,15 L1200,45 L1200,80 L0,80 Z" fill="var(--bg-secondary)"></path>
+    </svg>
+  </div>
+
+  <!-- =========================================================================
+       KATALOG BARANG PRODUK (#produk)
+       ========================================================================= -->
+  <section class="section" id="produk">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <span class="section-tag">Toko Outdoor RAO</span>
+        <h2 class="section-title">Katalog Perlengkapan <span class="text-gradient">Pendakian & Tektok</span></h2>
+        <p class="section-subtitle">Dapatkan trekking pole carbon, carrier gunung, tenda ultralight, kompor mini, jaket windproof, dan gear outdoor original dengan indikator stok langsung.</p>
+      </div>
+
+      <!-- Toolbar: Live Search, Stock Filter & Category Pills -->
+      <div class="catalog-toolbar reveal-on-scroll">
+        <div class="catalog-search-row">
+          <div class="search-input-wrap">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="productSearchInput" class="search-input" placeholder="Cari: Trekking pole, carrier 60L, tenda ultralight, jaket..." />
+          </div>
+
+          <!-- Stock Only Filter Pill -->
+          <button type="button" class="stock-filter-pill" id="productStockFilterBtn">
+            <span style="color: var(--accent-primary);">●</span> Hanya Ready Stock
+          </button>
+        </div>
+
+        <div class="filter-categories" id="productCategoryPills">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="cards-grid" id="productsGrid">
+        <!-- Populated via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Mountain Silhouette Divider (Products to Rentals) -->
+  <div class="mountain-divider">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+      <path d="M0,0 L200,50 L380,15 L560,65 L720,10 L890,55 L1050,20 L1200,45 L1200,80 L0,80 Z" fill="var(--bg-secondary)"></path>
+    </svg>
+  </div>
+
+  <!-- =========================================================================
+       PENYEWAAN / RENTAL ALAT CAMPING (#penyewaan)
+       ========================================================================= -->
+  <section class="section" id="penyewaan" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <span class="section-tag">Rental Station Basecamp</span>
+        <h2 class="section-title">Penyewaan Alat <span class="text-gradient">Camping & Gunung</span></h2>
+        <p class="section-subtitle">Pilih durasi sewa fleksibel (1 Hari, 2 Hari, 3 Hari, atau 1 Minggu) langsung pada kartu alat di bawah ini. Tarif dan ketersediaan stok terhitung otomatis!</p>
+      </div>
+
+      <!-- Toolbar: Live Search, Stock Filter & Category Pills -->
+      <div class="catalog-toolbar reveal-on-scroll">
+        <div class="catalog-search-row">
+          <div class="search-input-wrap">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="rentalSearchInput" class="search-input" placeholder="Cari alat sewa: Tenda 4P, Carrier Osprey, Paket Masak..." />
+          </div>
+
+          <!-- Stock Only Filter Pill -->
+          <button type="button" class="stock-filter-pill" id="rentalStockFilterBtn">
+            <span style="color: var(--accent-primary);">●</span> Hanya Unit Tersedia
+          </button>
+        </div>
+
+        <div class="filter-categories" id="rentalCategoryPills">
+          <!-- Populated via JS -->
+        </div>
+      </div>
+
+      <!-- Rentals Grid -->
+      <div class="cards-grid" id="rentalsGrid">
+        <!-- Populated via JavaScript with interactive duration selector and stock control -->
+      </div>
+
+      <!-- Syarat & Ketentuan Sewa Banner -->
+      <div class="rental-terms-banner reveal-on-scroll">
+        <div class="term-item">
+          <div class="term-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><line x1="15" y1="8" x2="17" y2="8"></line><line x1="15" y1="12" x2="17" y2="12"></line><line x1="7" y1="16" x2="17" y2="16"></line></svg>
+          </div>
+          <div class="term-text">
+            <h5>Jaminan Identitas Asli</h5>
+            <p>Wajib menitipkan 1 kartu identitas asli (KTP / SIM / Kartu Pelajar) saat pengambilan alat di basecamp.</p>
+          </div>
+        </div>
+
+        <div class="term-item">
+          <div class="term-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <div class="term-text">
+            <h5>Uji Pasang & Cek Fisik</h5>
+            <p>Pengecekan kelengkapan frame, pasak, dan resleting bersama tim basecamp sebelum berangkat mendaki.</p>
+          </div>
+        </div>
+
+        <div class="term-item">
+          <div class="term-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <div class="term-text">
+            <h5>Hitungan Sewa Fleksibel</h5>
+            <p>Durasi sewa dihitung 24 jam per hari pendakian dengan toleransi pengembalian hingga jam 22:00 WIB.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mountain Silhouette Divider (Rentals to Checklist) -->
+  <div class="mountain-divider mountain-divider-reverse">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+      <path d="M0,0 L180,45 L350,10 L520,60 L680,15 L860,50 L1020,15 L1200,45 L1200,80 L0,80 Z" fill="var(--bg-secondary)"></path>
+    </svg>
+  </div>
+
+  <!-- =========================================================================
+       CHECKLIST INTERAKTIF PERLENGKAPAN MENDAKI (#persiapan)
+       ========================================================================= -->
+  <section class="section" id="persiapan">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <span class="section-tag">Persiapan Pendaki</span>
+        <h2 class="section-title">Checklist Perlengkapan <span class="text-gradient">Wajib Naik Gunung</span></h2>
+        <p class="section-subtitle">Centang perlengkapan yang sudah Anda siapkan untuk memeriksa persentase kesiapan ekspedisi Anda!</p>
+      </div>
+
+      <div class="checklist-widget-card reveal-on-scroll">
+        <div class="checklist-progress-wrap">
+          <div class="checklist-progress-header">
+            <span>Status Kesiapan Gear Anda:</span>
+            <span id="checklistProgressText" style="color: var(--accent-primary); font-size: 1.1rem; font-weight: 800;">45% Siap</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="checklistProgressFill"></div>
+          </div>
+          <p id="checklistTipText" style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 0.8rem; font-style: italic;">
+            ⚠️ Persiapan masih minim. Segera lengkapi perlengkapan krusial (tenda, matras, sleeping bag, P3K) demi keamanan pendakian.
+          </p>
+        </div>
+
+        <div class="checklist-items-grid" id="packingChecklistContainer">
+          <!-- Populated via JavaScript -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mountain Silhouette Divider (Checklist to Events) -->
+  <div class="mountain-divider">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+      <path d="M0,0 L220,55 L400,10 L580,60 L750,15 L920,50 L1080,15 L1200,45 L1200,80 L0,80 Z" fill="var(--bg-secondary)"></path>
+    </svg>
+  </div>
+
+  <!-- =========================================================================
+       EVENT & OPEN TRIP PENDAKIAN (#event)
+       ========================================================================= -->
+  <section class="section" id="event" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <span class="section-tag">Agenda Petualangan</span>
+        <h2 class="section-title">Open Trip & Ekspedisi <span class="text-gradient">Gunung Nusantara</span></h2>
+        <p class="section-subtitle">Gabung dalam ekspedisi Seven Summits bersama pemandu APGI, uji stamina di Tektok Challenge, atau nikmati camping ceria ramah keluarga.</p>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="filter-categories reveal-on-scroll" id="eventCategoryPills" style="justify-content: center; margin-bottom: 2.5rem;">
+        <!-- Populated via JS -->
+      </div>
+
+      <!-- Events List -->
+      <div id="eventsList">
+        <!-- Populated via JavaScript with Altitude MDPL & Difficulty badges -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Mountain Silhouette Divider (Events to Testimonials) -->
+  <div class="mountain-divider mountain-divider-reverse">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+      <path d="M0,0 L180,45 L350,10 L520,60 L680,15 L860,50 L1020,15 L1200,45 L1200,80 L0,80 Z" fill="var(--bg-secondary)"></path>
+    </svg>
+  </div>
+
+  <!-- =========================================================================
+       TESTIMONIALS SECTION
+       ========================================================================= -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <span class="section-tag">Cerita Pendaki</span>
+        <h2 class="section-title">Apa Kata Mereka Tentang <span class="text-gradient">RAO Adventure</span></h2>
+        <p class="section-subtitle">Telah menemani ribuan pendaki solo, komunitas pecinta alam, dan keluarga menikmati keindahan alam Nusantara.</p>
+      </div>
+
+      <div class="testimonials-grid" id="testimonialsGrid">
+        <!-- Populated via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Mountain Silhouette Divider (Testimonials to Contact) -->
+  <div class="mountain-divider">
+    <svg viewBox="0 0 1200 80" preserveAspectRatio="none">
+      <path d="M0,0 L200,50 L380,15 L560,65 L720,10 L890,55 L1050,20 L1200,45 L1200,80 L0,80 Z" fill="var(--bg-secondary)"></path>
+    </svg>
+  </div>
+
+  <!-- =========================================================================
+       KONTAK BASECAMP & FAQ (#kontak)
+       ========================================================================= -->
+  <section class="section" id="kontak" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header reveal-on-scroll">
+        <span class="section-tag">Hubungi Basecamp</span>
+        <h2 class="section-title">Kontak & Konsultasi <span class="text-gradient">Jalur Pendakian</span></h2>
+        <p class="section-subtitle">Butuh rekomendasi alat pendakian, booking sewa tenda mendadak, atau informasi cuaca terkini di jalur gunung? Tim Basecamp RAO siap membantu.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Info Cards -->
+        <div class="contact-info-panel reveal-on-scroll">
+          <div class="contact-card-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </div>
+            <div class="contact-details">
+              <h5>WhatsApp Basecamp (Fast Response 24 Jam)</h5>
+              <p>Chat langsung untuk booking alat sewa, beli gear, & open trip.</p>
+              <a href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890</a>
+            </div>
+          </div>
+
+          <div class="contact-card-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </div>
+            <div class="contact-details">
+              <h5>Email Ekspedisi & Kerjasama</h5>
+              <p>Trip rombongan sekolah/kampus/perusahaan & sponsor.</p>
+              <a href="mailto:basecamp@rao-adventure.id">basecamp@rao-adventure.id</a>
+            </div>
+          </div>
+
+          <div class="contact-card-item">
+            <div class="contact-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <div class="contact-details">
+              <h5>Lokasi Basecamp & Rental Station</h5>
+              <p>Jl. Puncak Rimba No. 99, Jalur Pendakian Mandalawangi</p>
+              <span style="font-size: 0.82rem; color: var(--accent-primary); font-weight: 700;">● Buka Setiap Hari (Weekend 24 Jam Non-stop)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Message Form -->
+        <div class="contact-form-card reveal-on-scroll reveal-delay-2">
+          <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Kirim Pesan ke Basecamp</h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem;">Pesan konsultasi atau pesanan Anda akan langsung diteruskan ke WhatsApp Admin Basecamp RAO.</p>
+
+          <form id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Nama Anda</label>
+                <input type="text" id="contactName" class="form-control" placeholder="Nama Lengkap / Nama Rimba" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Email / No. HP</label>
+                <input type="text" id="contactEmail" class="form-control" placeholder="email@domain.com / No. WA" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Kategori Kebutuhan</label>
+              <select id="contactCategory" class="form-control">
+                <option value="Beli Gear Outdoor Baru">Pembelian Produk / Alat Tektok</option>
+                <option value="Sewa Tenda & Alat Camping">Penyewaan Alat Camping & Booking Tanggal</option>
+                <option value="Daftar Open Trip Gunung">Pendaftaran Slot Open Trip / Ekspedisi</option>
+                <option value="Konsultasi Jalur Pendakian">Konsultasi Jalur & Info Cuaca Gunung</option>
+                <option value="Kerjasama Rombongan / Corporate">Trip Khusus Rombongan / Komunitas</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Pesan / Rincian Rencana Pendakian</label>
+              <textarea id="contactMessage" class="form-control" placeholder="Tuliskan gunung tujuan, berapa hari sewa, atau gear yang ingin Anda sewa..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-whatsapp btn-block btn-lg">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+              Kirim via WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- FAQ Section Accordion -->
+      <div class="faq-section-wrap reveal-on-scroll">
+        <div class="section-header" style="margin-bottom: 2rem;">
+          <span class="section-tag">FAQ</span>
+          <h3 class="section-title" style="font-size: 1.85rem;">Pertanyaan Seputar Stok, Sewa & Trip Gunung</h3>
+        </div>
+
+        <div class="faq-list" id="faqList">
+          <!-- Populated via JavaScript -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       FOOTER
+       ========================================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="#beranda" class="brand-logo" style="margin-bottom: 1rem;">
+            <div class="logo-symbol">
+              <svg viewBox="0 0 340 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="height: 40px; width: auto;">
+                <path d="M12 20 C22 18, 48 16, 68 28 C82 37, 80 54, 66 62 C74 68, 86 82, 94 92 H72 L52 66 H36 V92 H14 L24 48 Z M36 34 V52 H54 C64 52, 66 40, 56 35 C48 32, 40 33, 36 34 Z" fill="currentColor" />
+                <path d="M102 92 L144 18 L186 92 H160 L144 58 L128 92 H102 Z M144 38 L136 52 H152 L144 38 Z" fill="currentColor" />
+                <g transform="translate(198, 12)">
+                  <circle cx="42" cy="42" r="39" stroke="currentColor" stroke-width="4.5" fill="#059669" />
+                  <path d="M12 68 L36 38 L54 58 L72 68 Z" fill="#047857" />
+                  <polygon points="42,42 66,20 48,46" fill="#ef4444" />
+                  <polygon points="42,42 22,60 38,40" fill="#ffffff" opacity="0.9" />
+                  <g transform="translate(56, 32) scale(0.65)">
+                    <circle cx="12" cy="6" r="3.5" fill="#ffffff" />
+                    <rect x="2" y="10" width="6" height="12" rx="2" fill="#ffffff" />
+                    <path d="M8 10 H14 L12 24 H8 Z" fill="#ffffff" />
+                    <path d="M9 24 L6 36 M12 24 L17 35" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+                    <line x1="18" y1="12" x2="22" y2="38" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" />
+                  </g>
+                </g>
+                <text x="14" y="112" font-family="'Outfit', 'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="21" fill="currentColor" letter-spacing="1.5">ADVENTURE GEAR</text>
+              </svg>
+            </div>
+          </a>
+          <p style="font-weight: 800; color: var(--accent-secondary); margin-bottom: 0.4rem;">Never Ending Adventure</p>
+          <p>Koleksi perlengkapan gunung ultralight, persewaan tenda camping higienis per hari, dan penyelenggara open trip pendakian Seven Summits terpercaya di Indonesia.</p>
+          <div class="social-links">
+            <a href="https://instagram.com" target="_blank" class="social-btn" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+            </a>
+            <a href="https://youtube.com" target="_blank" class="social-btn" aria-label="YouTube">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+            </a>
+            <a href="https://tiktok.com" target="_blank" class="social-btn" aria-label="TikTok">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Navigasi Utama</h5>
+          <ul class="footer-links">
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#puncak">Puncak & Cuaca</a></li>
+            <li><a href="#produk">Katalog Outdoor</a></li>
+            <li><a href="#penyewaan">Sewa Tenda & Gear</a></li>
+            <li><a href="#persiapan">Checklist Pendaki</a></li>
+            <li><a href="#event">Jadwal Open Trip</a></li>
+            <li><a href="#kontak">Kontak Basecamp</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Kategori Populer</h5>
+          <ul class="footer-links">
+            <li><a href="#produk">Trekking Pole Carbon</a></li>
+            <li><a href="#produk">Tas Tektok Ultralight</a></li>
+            <li><a href="#penyewaan">Sewa Tenda Dome 4P</a></li>
+            <li><a href="#penyewaan">Paket Camping Ceria</a></li>
+            <li><a href="#event">Open Trip Gunung Prau</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Jam Basecamp</h5>
+          <p style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 0.8rem;">
+            <strong>Senin - Jumat:</strong> 08:00 - 22:00 WIB<br />
+            <strong>Sabtu - Minggu:</strong> 24 Jam Non-stop
+          </p>
+          <span style="display: inline-block; font-size: 0.82rem; padding: 0.3rem 0.8rem; background: var(--accent-gradient-subtle); color: var(--accent-primary); border-radius: var(--radius-sm); border: 1px solid var(--border-focus); font-weight: 700;">
+            ● Pengiriman Alat se-Indonesia
+          </span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 <strong>RAO Adventure Gear</strong>. Slogan: <em>Never Ending Adventure</em>. Hak Cipta Dilindungi.</p>
+        <p>Didesain untuk Komunitas Pendaki & Petualang Nusantara.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       MODAL POPUP DETAIL (Produk / Rental / Event)
+       ========================================================================= -->
+  <div class="modal-overlay" id="detailModalOverlay" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <button class="modal-close-btn" id="detailModalCloseBtn" aria-label="Tutup Modal">✕</button>
+      <div class="modal-body" id="detailModalContent">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       SLIDE-IN CART DRAWER (Shopping & Rental Gear)
+       ========================================================================= -->
+  <div class="cart-drawer-overlay" id="cartOverlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3 style="font-size: 1.25rem; font-weight: 800; display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+          Keranjang Gear & Sewa
+        </h3>
+        <button class="modal-close-btn" id="cartCloseBtn" style="position: static;" aria-label="Tutup Keranjang">✕</button>
+      </div>
+
+      <div class="cart-items-list" id="cartItemsList">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-total-row">
+          <span class="cart-total-label">Total Estimasi:</span>
+          <span class="cart-total-val" id="cartTotalVal">Rp 0</span>
+        </div>
+        <button class="btn btn-whatsapp btn-block btn-lg" id="cartCheckoutBtn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+          Checkout via WhatsApp Basecamp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       FLOATING WHATSAPP BUTTON & TOAST NOTIFICATION CONTAINER
+       ========================================================================= -->
+  <a href="https://wa.me/6281234567890" id="floatingWaBtn" class="floating-wa-btn" aria-label="Chat WhatsApp Basecamp">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+  </a>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
